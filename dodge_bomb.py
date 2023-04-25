@@ -1,6 +1,5 @@
 import random #標準ライブラリ
 import sys
-
 import pygame as pg #サードパーティー
 
 
@@ -37,12 +36,8 @@ def main():
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
     kk_img2= pg.image.load("ex02/fig/7.png")
     kk_img2 = pg.transform.rotozoom(kk_img2, 0, 2.0)
-
-    
-
     kk_rct=kk_img.get_rect()
     kk_rct.center=(900,400)
-
     bb_img = pg.Surface((20,20))                #練習１(11-13)
     pg.draw.circle(bb_img,(255,0,0),(10,10),10)
     bb_img.set_colorkey((0,0,0))
@@ -70,28 +65,23 @@ def main():
             for k,mv in delta.items():
                 if key_lst[k]:
                     kk_rct.move_ip(-mv[0],-mv[1])
-        
-
-
+    
         screen.blit(bg_img, [0, 0])
-
         accs = [a for a in range(1, 11)]
         avx,avy=vx*accs[min(tmr//1000,9)],vy*accs[min(tmr//1000,9)]
         bb_rct.move_ip(avx,avy)
+
         yoko,tate=check_bound(screen.get_rect(),bb_rct)
         if not yoko:
             vx*=-1
         if not tate:
             vy*=-1
-        
+
         if kk_rct.colliderect(bb_rct):
             screen.blit(kk_img2, kk_rct)
-            return
-        
+            return   
         screen.blit(bb_img, bb_rct)
         screen.blit(kk_img, kk_rct)
-        
-
         pg.display.update()
         clock.tick(1000)
 
