@@ -1,5 +1,7 @@
-import pygame as pg
+import random #標準ライブラリ
 import sys
+
+import pygame as pg #サードパーティー
 
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
@@ -11,6 +13,9 @@ def main():
     bb_img = pg.Surface((20,20))                #練習１(11-13)
     pg.draw.circle(bb_img,(255,0,0),(10,10),10)
     bb_img.set_colorkey((0,0,0))
+    x=random.randint(0,1600)
+    y=random.randint(0,900)
+    screen.blit(bb_img, [x, y])
     
 
     tmr = 0
@@ -23,7 +28,9 @@ def main():
         tmr += 1
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, [900, 400])
-        screen.blit(bb_img, [100, 400])
+        
+        screen.blit(bb_img, [x, y])
+        
         pg.display.update()
         clock.tick(1000)
 
