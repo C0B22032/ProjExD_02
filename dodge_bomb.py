@@ -15,7 +15,11 @@ def main():
     bb_img.set_colorkey((0,0,0))
     x=random.randint(0,1600)
     y=random.randint(0,900)
-    screen.blit(bb_img, [x, y])
+    vx = +1
+    vy = +1
+    bb_rct=bb_img.get_rect()
+    bb_rct.center=(x,y)
+    bb_rct.move_ip(vx,vy)
     
 
     tmr = 0
@@ -28,8 +32,10 @@ def main():
         tmr += 1
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, [900, 400])
+        bb_rct.move_ip(vx,vy)
+        screen.blit(bb_img, bb_rct)
         
-        screen.blit(bb_img, [x, y])
+        
         
         pg.display.update()
         clock.tick(1000)
