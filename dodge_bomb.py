@@ -34,8 +34,9 @@ def main():
     bg_img = pg.image.load("ex02/fig/pg_bg.jpg")
     kk_img = pg.image.load("ex02/fig/3.png")
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
-    kk_img2= pg.image.load("ex02/fig/7.png")
-    kk_img2 = pg.transform.rotozoom(kk_img2, 0, 2.0)
+
+    
+
     kk_rct=kk_img.get_rect()
     kk_rct.center=(900,400)
     bb_img = pg.Surface((20,20))                #練習１(11-13)
@@ -67,10 +68,16 @@ def main():
                     kk_rct.move_ip(-mv[0],-mv[1])
     
         screen.blit(bg_img, [0, 0])
+
         accs = [a for a in range(1, 11)]
         avx,avy=vx*accs[min(tmr//1000,9)],vy*accs[min(tmr//1000,9)]
-        bb_rct.move_ip(avx,avy)
 
+
+
+
+
+
+        bb_rct.move_ip(avx,avy)
         yoko,tate=check_bound(screen.get_rect(),bb_rct)
         if not yoko:
             vx*=-1
@@ -78,8 +85,9 @@ def main():
             vy*=-1
 
         if kk_rct.colliderect(bb_rct):
-            screen.blit(kk_img2, kk_rct)
-            return   
+
+            return
+        
         screen.blit(bb_img, bb_rct)
         screen.blit(kk_img, kk_rct)
         pg.display.update()
